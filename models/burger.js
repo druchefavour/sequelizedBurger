@@ -1,26 +1,32 @@
-// Import the ORM to create functions that will interact with the database.
-var orm = require("../config/orm.js");
-
-var burgers = {
-	all:function (cb) {
-		orm.all ("burgers", function (res) {
-			cb (res);
-		})
-	},
-	
-	// The variables cols and vals are arrays.
-	create: function (cols, vals, cb) {
-		orm.create ("burgers", cols, vals, function (res) {
-			cb (res);
-		});
-	},
-
-	update:function (objColVals, condition, cb) {
-		orm.update ("burgers", objColVals, condition, function (res) {
-			cb (res);
-		});
-	}
-}
-
-// Export the database functions for the controller (burgers_Controller.js).
-module.exports = burgers;
+module.exports = function(sequelize, DataTypes) {
+  var Burgers = sequelize.define("Burger", {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    burger_name: {
+      type: DataTypes.STRING,
+      //allowNull: false,
+      //validate: {
+      //  len: [1]
+     // }
+    },
+    devoured: {
+      type: DataTypes.BOOLEAN,
+      // defaultValue is a flag that defaults a new burger devour value to false if
+      // it isn't supplied one
+      defaultValue: false,
+    },
+    createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+    updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      }
+  });
+  return Burgers;
+};

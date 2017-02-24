@@ -10,6 +10,9 @@ var methodOverride = require("method-override");
 var app = express();
 var port = process.env.PORT || 3000;
 
+// Requiring our models for syncing
+var db = require("./models");
+
 // Serve static content for the app from the "public" directory in the application directory
 
 app.use(express.static(process.cwd() + "/public"));
@@ -21,19 +24,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Override with POST having ?_method=DELETE
 
 app.use(methodOverride("_method"));
+
+// Routes =============================================================
+
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
+
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var mysql = require("mysql");
-
-// Import routes and give the server access to them.
-var routes = require("./controllers/burgers_controller.js");
-
-app.use("/", routes);
-
 // Listen for response and log a message to the user upon success
-app.listen(port, function() {
+// Syncing our sequelize models and then starting our express app
+db.sequelize.sync({force:true}).then(function() {
+	app.listen(port, function() {
 	console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", port, port); 
-});;
+});
+});
