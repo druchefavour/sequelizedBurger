@@ -8,8 +8,8 @@ module.exports = function(app) {
   // GET route for getting all of the posts
   app.get("/burgers/burger", function(req, res) {
     var query = {};
-    if (req.query.author_id) {
-      query.CustormerId = req.query.customer_id;
+    if (req.query.Customer_id) {
+      query.CustomerId = req.query.Customer_id;
     }
     db.Post.findAll({
       where: query

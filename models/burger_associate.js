@@ -30,10 +30,10 @@ module.exports = function(sequelize, DataTypes) {
       // We're saying that we want our Customer to have Burgers
       classMethods: {
         associate: function(models) {
-          // An Author (foreignKey) is required or a Post can't be made
+          // A Customer (foreignKey) is required or a Burger can't be consumed
           Burgers.belongsTo(models.Customer, {
             foreignKey: {
-              allowNull: false
+              //allowNull: false
             }
           });
         }
