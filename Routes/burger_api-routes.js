@@ -37,7 +37,7 @@ module.exports = function(app) {
   //  });
   //});
 
-  app.post('/burgers/create', function(req, res){
+  app.post('/burgers/create/', function(req, res){
   db.Burga.create({'burger_name': req.body.burger_name})
   .then(function(dbBurger) {
     res.redirect('/burgers')

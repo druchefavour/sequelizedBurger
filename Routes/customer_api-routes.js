@@ -29,12 +29,14 @@ app.get("/burgers/customer/:id", function(req, res) {
   });
 
   // POST route for returning posts of a specific category
-  app.post('/burgers/customer', function(req, res){
+  app.post('/burgers/create/:id', function(req, res){
   // Create a Customer with the data available to us in req.body
-  db.Customer.create(req.body).then(function(dbCustomer){
+  db.Customer.create({'customer_name': req.body.customer_name}, {where: {id: req.params.id}})
+  .then(function(dbCustomer) {
     res.redirect('/burgers')
   });
 });
+
 
   
   // POST route for saving a new post
