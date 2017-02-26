@@ -76,7 +76,7 @@ module.exports = function(app) {
 
   console.log('condition ', condition);
 
-  db.Burger.update({'devoured': req.body.devoured}, {where: {id: req.params.id}}).then(function(dbBurger){
+  db.Burga.update({'devoured': req.body.devoured}, {where: {id: req.params.id}}).then(function(dbBurga){
     res.redirect('/burgers');
   });
 });
