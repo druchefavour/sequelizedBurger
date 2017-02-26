@@ -11,7 +11,7 @@ module.exports = function(app) {
     if (req.query.id) {
       query.CustomerId = req.query.id;
     }
-    db.Burger.findAll({
+    db.Burga.findAll({
       where: query
     }).then(function(dbBurga) {
       res.redirect('/burgers');
@@ -20,7 +20,7 @@ module.exports = function(app) {
 
   // Get route for retrieving a single Burger
   app.get("/burgers/burger/:id", function(req, res) {
-    db.Burger.findOne({
+    db.Burga.findOne({
       where: {
         id: req.params.id
       }
@@ -38,7 +38,7 @@ module.exports = function(app) {
   //});
 
   app.post('/burgers/create', function(req, res){
-  db.Burga.create({'burger_name': req.body.name})
+  db.Burga.create({'burger_name': req.body.burger_name})
   .then(function(dbBurger) {
     res.redirect('/burgers')
   });
