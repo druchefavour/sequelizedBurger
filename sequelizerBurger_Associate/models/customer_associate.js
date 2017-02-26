@@ -43,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
         associate: function(models) {
           // Associating Customer with Burgers
           // When a Customer is deleted, also delete any associated Burgers
-          Customer.hasMany(models.Burger, {
+          Customer.hasMany(models.Burga, {
             onDelete: "cascade",
             onUpdate: 'cascade'
           });

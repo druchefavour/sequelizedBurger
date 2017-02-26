@@ -1,6 +1,6 @@
 <div class="container"> 
   <div class="jumbotron"> 
-    <img src="/assets/images/burger-outline-filled.png"> 
+    <img src="/assets/images/crafted_burgers.jpg"> 
     <h1> Eat-Da-Burger! </h1>
   </div>
 
@@ -14,10 +14,12 @@
           <li class="list-group-item">
             <div class="input-group">
               <p class="lead"> {{this.burger_name}} </p>
+              <label for="name">Your Name</label>
+                  <input type="name" name="customer name" value="true">
               <span class="input-group-btn">
                 <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
                   <input type="hidden" name="devoured" value="true">
-                  <button class="btn btn-default btn-lg" type="submit"> EAT IT! </button>
+                  <button class="btn btn-default btn-lg" type="submit"> DEVOUR! </button>
                 </form>
               </span>
             </div>
@@ -38,25 +40,26 @@
           {{#if this.devoured}}
           <li class="list-group-item">
             <p class="lead">{{this.burger_name}} </p>
-          </li>
+            <i>(Eaten by {{this.customer_name}})</i>          
+        </li>
           {{/if}}
         {{/each}}
         </ul>
       </div>
     </div>
-  </div>
 
-  <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-10 col-md-offset-1">
     <p class="lead"> Enter the name of the burger you want to eat & click the submit button. </p>
 
     {{!-- section to add burgers --}}
-    <form class="create-update-form" action="burgers/create" method="POST">
+    <form class="create-update-form" action="burgers/create/" method="POST">
 
       <div class="form-group">
-        <textarea class="form-control input-lg" type="text" name="b_name" rows="3"> </textarea>
+        <p> Enter Burger Name</p>
+        <textarea class="form-control input-lg" type="text" name="burger_name" placeholder="Burger Name" rows="3"> </textarea>
       </div>
-
-      <button class="btn btn-default btn-lg" type="submit">Add Burger!</button>
+    
+      <button class="btn btn-default btn-lg" type="submit">Add Data!</button>
     </form>
   </div>
 </div>

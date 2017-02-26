@@ -1,0 +1,36 @@
+*{
+	text-align: center;
+}
+body{
+	background-color: #E8B92D;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+}
+
+.jumbotron {
+	background-color: #f5f5f5;
+}
+
+
+li {
+  background: #FAEBD7;
+  margin: 5px;
+  padding: 5px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.create-update-form {
+  background: aqua;
+  margin: 5px;
+  padding: 5px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
