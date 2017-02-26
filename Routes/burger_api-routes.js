@@ -8,13 +8,13 @@ module.exports = function(app) {
   // GET route for getting all of the posts
   app.get("/burgers/burger", function(req, res) {
     var query = {};
-    if (req.query.Customer_id) {
-      query.CustomerId = req.query.Customer_id;
+    if (req.query.id) {
+      query.CustomerId = req.query.id;
     }
-    db.Post.findAll({
+    db.Burger.findAll({
       where: query
-    }).then(function(dbBurger) {
-      res.json(dbBurger);
+    }).then(function(dbBurga) {
+      res.redirect('/burgers');
     });
   });
 
@@ -24,18 +24,26 @@ module.exports = function(app) {
       where: {
         id: req.params.id
       }
-    }).then(function(dbBurger) {
-      console.log(dbBurger);
-      res.json(dbBurger);
+    }).then(function(dbBurga) {
+      //console.log(dbBurger);
+      res.redirect('/burgers');
     });
   });
 
   // POST route for saving a new post
-  app.post("/burgers/burger", function(req, res) {
-    db.Burger.create(req.body).then(function(dbBurger) {
-      res.json(dbBurger);
-    });
+  //app.post("/burgers/burger", function(req, res) {
+  //  db.Burger.create(req.body.burger_name).then(function(dbBurga) {
+  //    res.redirect('/burgers');
+  //  });
+  //});
+
+  app.post('/burgers/create', function(req, res){
+  db.Burga.create({'burger_name': req.body.name})
+  .then(function(dbBurger) {
+    res.redirect('/burgers')
   });
+});
+
 
   // DELETE route for deleting burgers
   app.delete("/burgers/burger/:id", function(req, res) {

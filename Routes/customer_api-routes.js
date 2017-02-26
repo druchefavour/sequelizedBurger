@@ -3,27 +3,33 @@ var db = require('../models');
 
 //Routes
 module.exports = function (app) {
-	// Find all Customers and redirect to the home page
-  app.get('/burgers/customers', function(req, res){
-  db.Customer.findAll({}).then(function(dbcustomer) {
-  res.redirect('/burgers');
-});
-});
-
-// GET one customers id
-app.get("/burgers/customers/:id", function(req, res) {
-    // Find one Customer with the id in req.params.id and return them to the user with res.json
-    db.Customer.findfindOne({
-      where: {
-        id: req.params.id
-      }
+	app.get("/burger/customer", function(req, res) {
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Burger
+    db.Customer.findAll({
+      include: [db.Burger]
     }).then(function(dbCustomer) {
       res.json(dbCustomer);
     });
   });
 
-  // Get route for returning posts of a specific category
-  app.post('/burgers/customers', function(req, res){
+app.get("/burgers/customer/:id", function(req, res) {
+    // Here we add an "include" property to our options in our findOne query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Post
+    db.Customer.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.Burger]
+    }).then(function(dbCustomer) {
+      res.json(dbCustomer);
+    });
+  });
+
+  // POST route for returning posts of a specific category
+  app.post('/burgers/customer', function(req, res){
   // Create a Customer with the data available to us in req.body
   db.Customer.create(req.body).then(function(dbCustomer){
     res.redirect('/burgers')

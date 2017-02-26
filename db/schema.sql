@@ -9,3 +9,11 @@ devoured BOOLEAN DEFAULT false,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (id)
 );
+
+CREATE TABLE customers (
+id int NOT NULL AUTO_INCREMENT,
+customer_name varchar(255) NOT NULL,
+devoured BOOLEAN DEFAULT false,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id)
+);

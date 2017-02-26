@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Burgers = sequelize.define("Burger", {
+  var Burga = sequelize.define("Burga", {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     burger_name: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      //allowNull: false,
       len: [1]
     },
     devoured: {
@@ -31,15 +31,15 @@ module.exports = function(sequelize, DataTypes) {
       classMethods: {
         associate: function(models) {
           // A Customer (foreignKey) is required or a Burger can't be consumed
-          Burgers.belongsTo(models.Customer, {
-            foreignKey: {
+          Burga.belongsTo(models.Customer, {
+            //foreignKey: {
               //allowNull: false
-            }
+           // }
           });
         }
       }
     }
     )
-  return Burgers;
+  return Burga;
   };
 //=========================
