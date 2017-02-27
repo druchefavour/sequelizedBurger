@@ -9,8 +9,10 @@ module.exports = function(sequelize, DataTypes) {
       },
     customer_name: {
       type: DataTypes.TEXT,
-     allowNull: false,
-      len: [1]
+     //allowNull: false,
+      validate: {
+        len: [1]
+      }
     },
     devoured: {
       type: DataTypes.BOOLEAN,

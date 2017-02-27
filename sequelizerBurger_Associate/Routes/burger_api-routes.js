@@ -11,10 +11,11 @@ module.exports = function(app) {
     if (req.query.id) {
       query.CustomerId = req.query.id;
     }
+    order: [["burger_name", "DESC"]]
     db.Burga.findAll({
       where: query
     }).then(function(dbBurga) {
-      res.redirect('/burgers');
+      res.json(dbBurga);
     });
   });
 

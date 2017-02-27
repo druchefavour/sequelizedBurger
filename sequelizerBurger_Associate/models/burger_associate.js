@@ -9,6 +9,9 @@ module.exports = function(sequelize, DataTypes) {
     burger_name: {
       type: DataTypes.TEXT,
       //allowNull: false,
+      validate: {
+        len: [1]
+      }
       //len: [1]
     },
     devoured: {
